@@ -135,10 +135,6 @@ begin
 end//
 delimiter ;
 
-call inserir_cliente(1, 'Lucas', '9999-1234', '12345678901', 'Rua Plameiras', 1);
-call inserir_cliente(2, 'Cristian', '8888-5678', '98765432109', 'Avenida JK', 2);
-call inserir_cliente(3, 'Marlo Gay', '7777-9876', '24242424242', 'Rua Bambi', 3);
-
 
 
 
@@ -379,18 +375,18 @@ create procedure inserir_funcionario(
 begin
     insert into funcionario (id, nome, telefone, cpf, logradouro, complemento, numero, salario, data_ingresso, cargo, transacao, cep, imobiliaria)
     values (
-        p_id
-        p_nome
-        p_telefone
-        p_cpf
-        p_logradouro
-        p_complemento
-        p_numero
-        p_salario
-        p_data_ingresso
-        p_cargo
-        p_transacao
-        p_cep
+        p_id,
+        p_nome,
+        p_telefone,
+        p_cpf,
+        p_logradouro,
+        p_complemento,
+        p_numero,
+        p_salario,
+        p_data_ingresso,
+        p_cargo,
+        p_transacao,
+        p_cep,
         p_imobiliaria
     );
 end //

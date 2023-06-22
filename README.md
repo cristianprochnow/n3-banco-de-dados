@@ -25,6 +25,15 @@ docker ps
 
 # Pega o código do container de `mariadb` que está sendo executado, e entre no container.
 docker exec -it <id-container> bash
+
+# Quando realizar o comando, entrará na central do MySQL, e então use o comando abaixo.
+mysql -u admin -p
+
+# Quando perguntar a senha, coloque a abaixo.
+admin
+
+# Ao entrar no gerenciamento do MariaDB, dê o comando a seguir...
+source /app/setup.sql;
 ```
 
 [link-documento]: https://drive.google.com/file/d/1TLshUOreK_pwHAErh-ml_qOgfb92D7mt/view?usp=sharing

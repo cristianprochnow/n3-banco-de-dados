@@ -49,6 +49,13 @@ call inserir_cep(3, '88058-221', 3);
 
 
 
+call inserir_cliente(1, 'Lucas', '9999-1234', '12345678901', 'Rua Plameiras', 1);
+call inserir_cliente(2, 'Cristian', '8888-5678', '98765432109', 'Avenida JK', 2);
+call inserir_cliente(3, 'Marlo Gay', '7777-9876', '24242424242', 'Rua Bambi', 3);
+
+
+
+
 call inserir_venda(1, '2023-01-01', 10450.00, 1);
 call inserir_venda(2, '2023-02-01', 15440.50, 2);
 call inserir_venda(3, '2023-03-01', 25500.25, 3);
