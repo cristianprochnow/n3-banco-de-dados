@@ -51,15 +51,6 @@ create table cep (
     foreign key(bairro) references bairro(id) 
 );
 
-
-create table venda (
-    id int primary key,
-    data date,
-    valor_estipulado decimal(18, 2),
-    transacao int,
-    foreign key(transacao) references transacao(id)
-);
-
 create table cliente (
     id int primary key,
     nome varchar(30),
@@ -69,6 +60,16 @@ create table cliente (
     cep int,
     foreign key(cep) references cep(id)
 );
+
+create table venda (
+    id int primary key,
+    data date,
+    valor_estipulado decimal(18, 2),
+    transacao int,
+    foreign key(transacao) references transacao(id),
+    foreign key(cliente) references cliente(id),
+);
+
 
 create table imovel (
     id int primary key,

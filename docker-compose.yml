@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    volumes:
+        - ./:/app
+    ports:
+      - "3306:3306"
+    working_dir: /app
+    environment:
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=admin
+      - MARIADB_DATABASE=IMOBI
+      - MARIADB_ROOT_PASSWORD=root
