@@ -39,6 +39,8 @@ create table cidade (
 create table bairro (
     id int primary key,
     descricao varchar(25)
+    cidade int,
+    foreign key(cidade) references cidade(int)
 );
 
 
@@ -47,27 +49,6 @@ create table cep (
     num_cep varchar(9),
     bairro int,
     foreign key(bairro) references bairro(id) 
-);
-
-
-create table funcionario (
-    id int primary key,
-    nome varchar(30),
-    telefone varchar(15),
-    cpf varchar(11),
-    logradouro varchar(50),
-    complemento varchar(50),
-    numero int(6),
-    salario decimal(18, 2),
-    data_ingresso date,
-    cargo int,
-    foreign key(cargo) references cargo(id),
-    transacao int,
-    foreign key(transacao) references transacao(id),
-    cep int,
-    foreign key(cep) references cep(id),
-    imobiliaria int,
-    foreign key(imobiliaria) references imobiliaria(id)
 );
 
 
@@ -193,4 +174,25 @@ create table imoveisTable (
     foreign key(preco) references tabela_preco(id),
     imovel int,
     foreign key(imovel) references imovel(id)
+);
+
+
+create table funcionario (
+    id int primary key,
+    nome varchar(30),
+    telefone varchar(15),
+    cpf varchar(11),
+    logradouro varchar(50),
+    complemento varchar(50),
+    numero int(6),
+    salario decimal(18, 2),
+    data_ingresso date,
+    cargo int,
+    foreign key(cargo) references cargo(id),
+    transacao int,
+    foreign key(transacao) references transacao(id),
+    cep int,
+    foreign key(cep) references cep(id),
+    imobiliaria int,
+    foreign key(imobiliaria) references imobiliaria(id)
 );
