@@ -22,7 +22,7 @@ create table cargo (
 
 
 create table estado (
-    id primary key,
+    id int primary key,
     uf int(2),
     nome varchar(20) 
 );
@@ -174,7 +174,7 @@ create table locacao (
     cliente int,
     foreign key(cliente) references cliente(id),
     imovel int,
-    foreign key(imovel) references imovel(id)
+    foreign key(imovel) references imovel(id),
     tabela_preco int,
     foreign key(tabela_preco) references tabela_preco(id)
 );
