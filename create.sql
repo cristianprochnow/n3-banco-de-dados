@@ -1,5 +1,3 @@
-create database imobiliaria;
-
 create table forma_pgto (
     id int primary key,
     tipo varchar(10),
@@ -12,7 +10,6 @@ create table transacao (
     porcentagem float
 );
 
-
 create table cargo (
     id int primary key,
     descricao varchar(30),
@@ -20,44 +17,28 @@ create table cargo (
     comissao decimal(18,2)
 );
 
-
 create table estado (
     id int primary key,
-    uf int(2),
+    uf char(2),
     nome varchar(20) 
 );
-
 
 create table cidade (
     id int primary key,
     nome varchar(25),
-    estado int,
-    foreign key(estado) references estado(id)
+    estado int
 );
-
 
 create table bairro (
     id int primary key,
-    descricao varchar(25)
-    cidade int,
-    foreign key(cidade) references cidade(int)
+    descricao varchar(25),
+    cidade int
 );
-
 
 create table cep (
     id int primary key,
     num_cep varchar(9),
-    bairro int,
-    foreign key(bairro) references bairro(id) 
-);
-
-
-create table venda (
-    id int primary key,
-    data date,
-    valor_estipulado decimal(18, 2),
-    transacao int,
-    foreign key(transacao) references transacao(id)
+    bairro int
 );
 
 create table cliente (
@@ -66,8 +47,15 @@ create table cliente (
     telefone varchar(15),
     cpf varchar(11),
     logradouro varchar(50),
-    cep int,
-    foreign key(cep) references cep(id)
+    cep int
+);
+
+create table venda (
+    id int primary key,
+    data date,
+    valor_estipulado decimal(18, 2),
+    transacao int,
+    cliente int
 );
 
 create table imovel (
@@ -77,18 +65,14 @@ create table imovel (
     numero int(6),
     status varchar(30),
     cep int,
-    foreign key(cep) references cep(id),
-    imobiliaria int,
-    foreign key(imobiliaria) references imobiliaria(id)
+    imobiliaria int
 );
-
 
 create table anexo_imovel (
     id int primary key,
     arquivo blob,
     data_criacao date,
-    imovel int,
-    foreign key(imovel) references imovel(id)
+    imovel int
 );
 
 create table casa (
@@ -135,15 +119,13 @@ create table terreno (
 
 create table imobiliaria (
     id int primary key,
-    nome varchar(15),
+    nome varchar(100),
     logradouro varchar(50),
     complemento varchar(50),
     numero int(6),
     telefone varchar(15),
-    cep int,
-    foreign key(cep) references cep(id)
+    cep int
 );
-
 
 create table locacao (
     id int primary key,
@@ -151,31 +133,22 @@ create table locacao (
     data_inicio date,
     data_fim date,
     transacao int,
-    foreign key(transacao) references transacao(id),
     cliente int,
-    foreign key(cliente) references cliente(id),
     imovel int,
-    foreign key(imovel) references imovel(id),
-    tabela_preco int,
-    foreign key(tabela_preco) references tabela_preco(id)
+    tabela_preco int
 );
 
 create table tabela_preco (
     id int primary key,
     forma_pgto int,
-    foreign key(forma_pgto) references forma_pgto(id),
     valor decimal(18,2)
 );
-
 
 create table imoveisTable (
     id int primary key,
     preco int,
-    foreign key(preco) references tabela_preco(id),
-    imovel int,
-    foreign key(imovel) references imovel(id)
+    imovel int
 );
-
 
 create table funcionario (
     id int primary key,
@@ -188,18 +161,13 @@ create table funcionario (
     salario decimal(18, 2),
     data_ingresso date,
     cargo int,
-    foreign key(cargo) references cargo(id),
     transacao int,
-    foreign key(transacao) references transacao(id),
     cep int,
-    foreign key(cep) references cep(id),
-    imobiliaria int,
-    foreign key(imobiliaria) references imobiliaria(id)
+    imobiliaria int
 );
 
 create table comissao(
     id int primary key auto_increment,
     valor_comissao decimal(18,2),
-    cliente int,
-    foreign key(cliente) references cliente(id)
+    cliente int
 );
