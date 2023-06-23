@@ -126,7 +126,7 @@ CREATE TABLE `cargo` (
 
 LOCK TABLES `cargo` WRITE;
 /*!40000 ALTER TABLE `cargo` DISABLE KEYS */;
-INSERT INTO `cargo` VALUES (1,'Gerente',5000.00,0.10),(2,'Analista de Vendas',3500.00,0.05),(3,'Assistente Administrativo',2500.00,0.02),(4,'Desenvolvedor Java',4000.00,0.08),(5,'Analista de Marketing',3500.00,0.05),(6,'Auxiliar de Produção',2000.00,0.01),(7,'Coordenador de Projetos',6000.00,0.12),(8,'Analista Financeiro',3800.00,0.06),(9,'Supervisor de Vendas',4500.00,0.09),(10,'Técnico de Suporte',3000.00,0.04);
+INSERT INTO `cargo` VALUES (1,'Gerente',5000.00,0.10),(2,'Analista de Vendas',3500.00,0.05),(3,'Assistente Administrativo',2500.00,0.02),(4,'Desenvolvedor Java',4000.00,0.08),(5,'Analista de Marketing',3500.00,0.05),(6,'Auxiliar de Produção',2000.00,0.01),(7,'Coordenador de Projetos',6000.00,0.12),(8,'Analista Financeiro',3800.00,0.06),(9,'Supervisor de Vendas',4500.00,0.09),(10,'Técnico de Suporte',3000.00,0.04),(11,'Desenvolvedor Next JS',20000.00,0.90);
 /*!40000 ALTER TABLE `cargo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,6 +243,32 @@ LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
 INSERT INTO `cliente` VALUES (1,'Lucas','9999-1234','12345678901','Rua Plameiras',1),(2,'Cristian','8888-5678','98765432109','Avenida JK',2),(3,'Marlo Gay','7777-9876','24242424242','Rua Bambi',3);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comissao`
+--
+
+DROP TABLE IF EXISTS `comissao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comissao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `valor_comissao` decimal(18,2) DEFAULT NULL,
+  `cliente` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cliente` (`cliente`),
+  CONSTRAINT `comissao_ibfk_1` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comissao`
+--
+
+LOCK TABLES `comissao` WRITE;
+/*!40000 ALTER TABLE `comissao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comissao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -470,6 +496,21 @@ INSERT INTO `locacao` VALUES (1,'cont1','2023-01-01','2023-12-31',1,1,1,1),(2,'c
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `locacao_cliente`
+--
+
+DROP TABLE IF EXISTS `locacao_cliente`;
+/*!50001 DROP VIEW IF EXISTS `locacao_cliente`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `locacao_cliente` AS SELECT
+ 1 AS `nome_func`,
+  1 AS `cpf`,
+  1 AS `num_contrato`,
+  1 AS `logradouro` */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `sala_comercial`
 --
 
@@ -494,6 +535,18 @@ LOCK TABLES `sala_comercial` WRITE;
 INSERT INTO `sala_comercial` VALUES (1,50,1,2),(2,80,2,3),(3,70,1,4);
 /*!40000 ALTER TABLE `sala_comercial` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `salario_total`
+--
+
+DROP TABLE IF EXISTS `salario_total`;
+/*!50001 DROP VIEW IF EXISTS `salario_total`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `salario_total` AS SELECT
+ 1 AS `soma_salarios` */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `tabela_preco`
@@ -586,9 +639,12 @@ CREATE TABLE `venda` (
   `data` date DEFAULT NULL,
   `valor_estipulado` decimal(18,2) DEFAULT NULL,
   `transacao` int(11) DEFAULT NULL,
+  `cliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `transacao` (`transacao`),
-  CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`transacao`) REFERENCES `transacao` (`id`)
+  KEY `cliente` (`cliente`),
+  CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`transacao`) REFERENCES `transacao` (`id`),
+  CONSTRAINT `venda_ibfk_2` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -598,9 +654,112 @@ CREATE TABLE `venda` (
 
 LOCK TABLES `venda` WRITE;
 /*!40000 ALTER TABLE `venda` DISABLE KEYS */;
-INSERT INTO `venda` VALUES (1,'2023-01-01',10450.00,1),(2,'2023-02-01',15440.50,2),(3,'2023-03-01',25500.25,3);
+INSERT INTO `venda` VALUES (1,'2023-01-01',10450.00,1,1),(2,'2023-02-01',15440.50,2,2),(3,'2023-03-01',25500.25,3,3);
 /*!40000 ALTER TABLE `venda` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `vendas_cliente`
+--
+
+DROP TABLE IF EXISTS `vendas_cliente`;
+/*!50001 DROP VIEW IF EXISTS `vendas_cliente`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `vendas_cliente` AS SELECT
+ 1 AS `nome_func`,
+  1 AS `cpf`,
+  1 AS `id`,
+  1 AS `data`,
+  1 AS `valor_estipulado` */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vendas_funcionario`
+--
+
+DROP TABLE IF EXISTS `vendas_funcionario`;
+/*!50001 DROP VIEW IF EXISTS `vendas_funcionario`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `vendas_funcionario` AS SELECT
+ 1 AS `nome_func`,
+  1 AS `id`,
+  1 AS `data`,
+  1 AS `valor_estipulado` */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `locacao_cliente`
+--
+
+/*!50001 DROP VIEW IF EXISTS `locacao_cliente`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `locacao_cliente` AS select `c`.`nome` AS `nome_func`,`c`.`cpf` AS `cpf`,`l`.`num_contrato` AS `num_contrato`,`i`.`logradouro` AS `logradouro` from ((`locacao` `l` join `cliente` `c` on(`l`.`cliente` = `c`.`id`)) join `imovel` `i` on(`l`.`imovel` = `i`.`id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `salario_total`
+--
+
+/*!50001 DROP VIEW IF EXISTS `salario_total`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `salario_total` AS select sum(`c`.`salario_base`) AS `soma_salarios` from `cargo` `c` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vendas_cliente`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vendas_cliente`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vendas_cliente` AS select `c`.`nome` AS `nome_func`,`c`.`cpf` AS `cpf`,`v`.`id` AS `id`,`v`.`data` AS `data`,`v`.`valor_estipulado` AS `valor_estipulado` from (`venda` `v` join `cliente` `c` on(`v`.`cliente` = `c`.`id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vendas_funcionario`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vendas_funcionario`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vendas_funcionario` AS select `f`.`nome` AS `nome_func`,`v`.`id` AS `id`,`v`.`data` AS `data`,`v`.`valor_estipulado` AS `valor_estipulado` from ((`venda` `v` join `transacao` `t` on(`t`.`id` = `v`.`transacao`)) join `funcionario` `f` on(`t`.`id` = `f`.`transacao`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -611,4 +770,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-22 18:43:34
+-- Dump completed on 2023-06-22 21:16:20
