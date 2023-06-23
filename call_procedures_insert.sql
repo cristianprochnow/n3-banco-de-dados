@@ -24,6 +24,10 @@ call inserir_cargo(10, 'Técnico de Suporte', 3000.00, 0.04);
 call inserir_estado(1, 'PR', 'Paraná');
 call inserir_estado(2, 'RS', 'Rio Grande do Sul');
 call inserir_estado(3, 'SC', 'Santa Catarina');
+call inserir_estado(4, 'SP', 'São Paulo');
+call inserir_estado(5, 'AM', 'Amazonas');
+call inserir_estado(6, 'AC', 'Acre');
+call inserir_estado(7, 'RJ', 'Rio de Janeiro');
 
 
 
@@ -31,6 +35,9 @@ call inserir_estado(3, 'SC', 'Santa Catarina');
 call inserir_cidade(1, 'Curitiba', 1);
 call inserir_cidade(2, 'Porto Alegre', 2);
 call inserir_cidade(3, 'Florianópolis', 3);
+call inserir_cidade(4, 'Joinville', 3);
+call inserir_cidade(5, 'Araquari', 3);
+call inserir_cidade(6, 'São José dos Pinhais', 1);
 
 
 
@@ -38,6 +45,9 @@ call inserir_cidade(3, 'Florianópolis', 3);
 call inserir_bairro(1, 'Ahú', 1);
 call inserir_bairro(2, 'Felicidade', 2);
 call inserir_bairro(3, 'Ingleses', 3);
+call inserir_bairro(4, 'Paranaguamirim', 4);
+call inserir_bairro(5, 'Costa e Silva', 4);
+call inserir_bairro(6, 'Centro', 4);
 
 
 
@@ -45,6 +55,8 @@ call inserir_bairro(3, 'Ingleses', 3);
 call inserir_cep(1, '80530-230', 1);
 call inserir_cep(2, '90619-900', 2);
 call inserir_cep(3, '88058-221', 3);
+call inserir_cep(4, '89235-883', 4);
+call inserir_cep(5, '89220-020', 5);
 
 
 
@@ -52,6 +64,8 @@ call inserir_cep(3, '88058-221', 3);
 call inserir_cliente(1, 'Lucas', '9999-1234', '12345678901', 'Rua Plameiras', 1);
 call inserir_cliente(2, 'Cristian', '8888-5678', '98765432109', 'Avenida JK', 2);
 call inserir_cliente(3, 'Marlo Gay', '7777-9876', '24242424242', 'Rua Bambi', 3);
+call inserir_cliente(4, 'Admilson Freitas', '7712-9876', '24244123242', 'Rua Bambi', 3);
+call inserir_cliente(5, 'Carlos Alberto', '7777-9356', '2424123242', 'Rua Bamby', 3);
 
 
 
@@ -109,6 +123,12 @@ call inserir_terreno(3, 1000.0, 50.0, 20.0, 'Declive');
 
 
 
+call inserir_forma_pgto(1, 'PARCELADO', 'Cartão de Crédito');
+call inserir_forma_pgto(2, 'VISTA', 'Cartão de Débito');
+call inserir_forma_pgto(3, 'VISTA', 'Dinheiro');
+
+
+
 
 call inserir_tabela_preco(1, 1, 1000.00);
 call inserir_tabela_preco(2, 2, 1500.00);
@@ -134,3 +154,10 @@ call inserir_imoveisTable(3, 3, 3);
 call inserir_funcionario(1, 'GUSTaVO', '987654321', '12345678901', 'Rua Marova', 'Apto 123', 123, 5000.00, '2022-01-01', 1, 1, 1, 1);
 call inserir_funcionario(2, 'RYAN', '999999999', '98765432101', 'Rua Luana', 'Casa 456', 456, 6000.00, '2022-02-01', 2, 2, 2, 1);
 call inserir_funcionario(3, 'EDICARSIA', '888888888', '54321098765', 'Rua Cortina', 'Sobrado 789', 789, 7000.00, '2022-03-01', 3, 3, 3, 1);
+
+
+
+
+call inserir_comissao(1, 1235.65, 2);
+call inserir_comissao(2, 135.65, 5);
+call inserir_comissao(3, 1555.65, 4);

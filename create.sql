@@ -19,7 +19,7 @@ create table cargo (
 
 create table estado (
     id int primary key,
-    uf int(2),
+    uf char(2),
     nome varchar(20) 
 );
 
@@ -119,7 +119,7 @@ create table terreno (
 
 create table imobiliaria (
     id int primary key,
-    nome varchar(15),
+    nome varchar(100),
     logradouro varchar(50),
     complemento varchar(50),
     numero int(6),
@@ -164,4 +164,10 @@ create table funcionario (
     transacao int,
     cep int,
     imobiliaria int
+);
+
+create table comissao(
+    id int primary key auto_increment,
+    valor_comissao decimal(18,2),
+    cliente int
 );

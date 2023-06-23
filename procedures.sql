@@ -141,7 +141,7 @@ delimiter ;
 delimiter //
 create procedure inserir_imobiliaria(
     in p_id int,
-    in p_nome varchar(15),
+    in p_nome varchar(100),
     in p_logradouro varchar(50),
     in p_complemento varchar(50),
     in p_numero int(6),
@@ -271,17 +271,17 @@ create procedure inserir_sala_comercial(
     in p_qtd_comodos int
 )
 begin
-    insert into apartamento (
+    insert into sala_comercial (
         id,
         area,
         qtd_banheiro,
-        qtd_comodost
+        qtd_comodos
     )
     values (
         p_id,
         p_area,
         p_qtd_banheiro,
-        p_qtd_comodost
+        p_qtd_comodos
     );
 end//
 delimiter ;
@@ -308,13 +308,13 @@ delimiter ;
 
 delimiter //
 create procedure inserir_tabela_preco(
-in p_id int,
-in p_forma_pgto int,
-in p_valor decimal(18,2)
+    in p_id int,
+    in p_forma_pgto int,
+    in p_valor decimal(18,2)
 )
 begin
-insert into tabela_preco (id, forma_pgto, valor)
-values (p_id, p_forma_pgto, p_valor);
+    insert into tabela_preco (id, forma_pgto, valor)
+    values (p_id, p_forma_pgto, p_valor);
 end //
 delimiter ;
 
@@ -389,5 +389,20 @@ begin
         p_cep,
         p_imobiliaria
     );
+end //
+delimiter ;
+
+
+
+
+delimiter //
+create procedure inserir_comissao(
+    in p_id int,
+    in p_valor_comissao decimal(18, 2),
+    in p_cliente int
+)
+begin
+    insert into comissao (id, valor_comissao, cliente)
+    values (p_id, p_valor_comissao, p_cliente);
 end //
 delimiter ;

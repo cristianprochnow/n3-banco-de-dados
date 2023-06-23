@@ -30,3 +30,5 @@ alter table funcionario add foreign key(cargo) references cargo(id);
 alter table funcionario add foreign key(transacao) references transacao(id);
 alter table funcionario add foreign key(cep) references cep(id);
 alter table funcionario add foreign key(imobiliaria) references imobiliaria(id);
+
+alter table comissao add foreign key(cliente) references cliente(id);
