@@ -196,3 +196,10 @@ create table funcionario (
     imobiliaria int,
     foreign key(imobiliaria) references imobiliaria(id)
 );
+
+create table comissao(
+    id int primary key auto_increment,
+    valor_comissao decimal(18,2),
+    cliente int,
+    foreign key(cliente) references cliente(id)
+);
