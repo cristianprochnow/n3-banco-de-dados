@@ -8,6 +8,7 @@ alter table cliente add foreign key(cep) references cep(id);
 
 alter table venda add foreign key(transacao) references transacao(id);
 alter table venda add foreign key(cliente) references cliente(id);
+alter table venda add foreign key(imovel) references imovel(id);
 
 alter table imovel add foreign key(cep) references cep(id);
 alter table imovel add foreign key(imobiliaria) references imobiliaria(id);
@@ -27,8 +28,9 @@ alter table imoveisTable add foreign key(preco) references tabela_preco(id);
 alter table imoveisTable add foreign key(imovel) references imovel(id);
 
 alter table funcionario add foreign key(cargo) references cargo(id);
-alter table funcionario add foreign key(transacao) references transacao(id);
 alter table funcionario add foreign key(cep) references cep(id);
 alter table funcionario add foreign key(imobiliaria) references imobiliaria(id);
+
+alter table transacao add foreign key(funcionario) references funcionario(id);
 
 alter table comissao add foreign key(cliente) references cliente(id);

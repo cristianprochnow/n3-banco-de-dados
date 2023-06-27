@@ -17,11 +17,12 @@ delimiter //
 create procedure inserir_transacao(
     in p_id int,
     in p_valor decimal(18, 2),
-    in p_porcentagem float
+    in p_porcentagem float,
+    in p_funcionario int
 )
 begin
-    insert into transacao (id, valor, porcentagem)
-    values (p_id, p_valor, p_porcentagem);
+    insert into transacao (id, valor, porcentagem, funcionario)
+    values (p_id, p_valor, p_porcentagem, p_funcionario);
 end //
 delimiter ;
 
@@ -109,11 +110,13 @@ create procedure inserir_venda(
     in p_id int,
     in p_data date,
     in p_valor_estipulado decimal(18, 2),
-    in p_transacao int
+    in p_transacao int,
+    in p_cliente int,
+    in p_imovel int
 )
 begin
-    insert into venda (id, data, valor_estipulado, transacao)
-    values (p_id, p_data, p_valor_estipulado, p_transacao);
+    insert into venda (id, data, valor_estipulado, transacao, cliente, imovel)
+    values (p_id, p_data, p_valor_estipulado, p_transacao, p_cliente, p_imovel);
 end//
 delimiter ;
 
@@ -368,12 +371,11 @@ create procedure inserir_funcionario(
     in p_salario decimal(18, 2),
     in p_data_ingresso date,
     in p_cargo int,
-    in p_transacao int,
     in p_cep int,
     in p_imobiliaria int
 )
 begin
-    insert into funcionario (id, nome, telefone, cpf, logradouro, complemento, numero, salario, data_ingresso, cargo, transacao, cep, imobiliaria)
+    insert into funcionario (id, nome, telefone, cpf, logradouro, complemento, numero, salario, data_ingresso, cargo, cep, imobiliaria)
     values (
         p_id,
         p_nome,
@@ -385,7 +387,6 @@ begin
         p_salario,
         p_data_ingresso,
         p_cargo,
-        p_transacao,
         p_cep,
         p_imobiliaria
     );

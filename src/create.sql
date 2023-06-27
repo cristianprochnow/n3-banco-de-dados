@@ -7,7 +7,8 @@ create table forma_pgto (
 create table transacao (
     id int primary key,
     valor decimal(18, 2),
-    porcentagem float
+    porcentagem float,
+    funcionario int
 );
 
 create table cargo (
@@ -55,6 +56,7 @@ create table venda (
     data date,
     valor_estipulado decimal(18, 2),
     transacao int,
+    imovel int,
     cliente int
 );
 
@@ -161,7 +163,6 @@ create table funcionario (
     salario decimal(18, 2),
     data_ingresso date,
     cargo int,
-    transacao int,
     cep int,
     imobiliaria int
 );

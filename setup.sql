@@ -1,4 +1,6 @@
-CREATE DATABASE IMOBI;
+CREATE DATABASE IMOBI 
+  CHARACTER SET utf8
+  COLLATE utf8_general_ci;
 USE IMOBI;
 
 source /app/src/create.sql;
