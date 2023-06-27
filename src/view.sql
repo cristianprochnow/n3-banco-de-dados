@@ -1,9 +1,8 @@
 -- criar visão para trazer todas as vendas de um funcionário
-
 create view vendas_funcionario as
 select f.nome as nome_func, v.id, v.data, v.valor_estipulado from venda v 
 inner join transacao t on t.id = v.transacao
-inner join funcionario f on t.id = t.funcionario;
+inner join funcionario f on f.id = t.funcionario;
 
 -- criar visão para trazer todas as vendas de um cliente (compra no caso)
 create view vendas_cliente as
@@ -17,7 +16,7 @@ inner join cliente c on l.cliente = c.id
 inner join imovel i on l.imovel = i.id;
 
 create view salario_total as
-select sum(salario_base) as soma_salarios  from cargo c;
+select sum(salario_base) as soma_salarios from cargo c;
 
 CREATE VIEW imoveis_disponiveis AS
 SELECT *

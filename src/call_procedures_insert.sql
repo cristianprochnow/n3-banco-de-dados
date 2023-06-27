@@ -70,7 +70,7 @@ call inserir_cep(10, '04884-992', 5);
 
 call inserir_cliente(1, 'Lucas', '9999-1234', '12345678901', 'Rua Plameiras', 1);
 call inserir_cliente(2, 'Cristian', '8888-5678', '98765432109', 'Avenida JK', 2);
-call inserir_cliente(3, 'Marlo Gay', '7777-9876', '24242424242', 'Rua Bambi', 3);
+call inserir_cliente(3, 'Marlo Querido', '7777-9876', '24242424242', 'Rua Bambi', 3);
 call inserir_cliente(4, 'Admilson Freitas', '7712-9876', '24244123242', 'Rua Bambi', 3);
 call inserir_cliente(5, 'Carlos Alberto', '7777-9356', '2424123242', 'Rua Bamby', 7);
 call inserir_cliente(6, 'Atadolfo de Nóbrega', '7234-9356', '2421233242', 'Rua da Saudade', 6);
@@ -137,6 +137,7 @@ call inserir_terreno(7, 800.0, 40.0, 20.0, 'Aclive');
 call inserir_forma_pgto(1, 'PARCELADO', 'Cartão de Crédito');
 call inserir_forma_pgto(2, 'VISTA', 'Cartão de Débito');
 call inserir_forma_pgto(3, 'VISTA', 'Dinheiro');
+call inserir_forma_pgto(4, 'PARCELADO', 'Crediário Especial');
 
 
 
